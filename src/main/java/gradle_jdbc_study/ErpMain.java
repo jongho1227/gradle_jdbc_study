@@ -2,6 +2,8 @@ package gradle_jdbc_study;
 
 import java.awt.EventQueue;
 
+import gradle_jdbc_study.ui.ErpManagementUi;
+
 
 
 public class ErpMain {
@@ -12,8 +14,8 @@ public class ErpMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					System.out.println(System.getProperty("user.dir") + System.getProperty("file.separator"));
-					System.out.println("첫 번째 수정");
+					ErpManagementUi frame = new ErpManagementUi();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

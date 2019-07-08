@@ -1,31 +1,40 @@
 package gradle_jdbc_study.dto;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Employee {
 	private int empNo;
 	private String empName;
-	private String title;
+	private Title title;
 	private Employee manager;
 	private int salary;
+	private int gender;
 	private Department dno;
-	private byte[] pic;
+	private Date hireDate;
+	
+	
 	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+	
 	public Employee(int empNo) {
 		this.empNo = empNo;
 	}
-	public Employee(int empNo, String empName, String title, Employee manager, int salary, Department dno, byte[] pic) {
+	
+	
+	public Employee(int empNo, String empName, Title title, Employee manager, int salary, int gender, Department dno,
+			Date hireDate) {
 		this.empNo = empNo;
 		this.empName = empName;
 		this.title = title;
 		this.manager = manager;
 		this.salary = salary;
+		this.gender = gender;
 		this.dno = dno;
-		this.pic = pic;
+		this.hireDate = hireDate;
 	}
+
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -38,10 +47,10 @@ public class Employee {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-	public String getTitle() {
+	public Title getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
+	public void setTitle(Title title) {
 		this.title = title;
 	}
 	public Employee getManager() {
@@ -56,23 +65,25 @@ public class Employee {
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
 	public Department getDno() {
 		return dno;
 	}
 	public void setDno(Department dno) {
 		this.dno = dno;
 	}
-	public byte[] getPic() {
-		return pic;
+	public Date getHireDate() {
+		return hireDate;
 	}
-	public void setPic(byte[] pic) {
-		this.pic = pic;
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
 	}
-	@Override
-	public String toString() {
-		return String.format("Employee [empNo=%s, empName=%s, title=%s, manager=%s, salary=%s, dno=%s, pic=%s]", empNo,
-				empName, title, manager, salary, dno, Arrays.toString(pic));
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,6 +91,7 @@ public class Employee {
 		result = prime * result + empNo;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -93,6 +105,30 @@ public class Employee {
 			return false;
 		return true;
 	}
+	
+	public Object[] toArray() {
+		SimpleDateFormat sp = new SimpleDateFormat("yy");
+		String a = sp.format(hireDate); // 년도만 뽑음.
+		
+		return new Object[]{String.format("E0%s%03d", a,empNo), empName, title, manager, salary, gender==0?"여":"남", dno, hireDate };
+	}
 
+	@Override
+	public String toString() {
+		SimpleDateFormat sp = new SimpleDateFormat("yy");
+		String a = sp.format(hireDate); // 년도만 뽑음.
+		return String.format("%s(%s)", empName,String.format("E0%s%03d", a,empNo));
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
